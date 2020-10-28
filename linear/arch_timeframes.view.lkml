@@ -80,12 +80,20 @@ view: arch_timeframes {
     sql: ${TABLE}.timestamp ;;
   }
 
-  dimension: month_short {
+  dimension: month_mmm {
     label: "MMM"
     group_label: "Monthly"
     type: string
     order_by_field: "month_index"
     sql: LEFT(${month}, 3) ;;
+  }
+
+  dimension: month_mmm_yy {
+    label: "MMM-YY"
+    group_label: "Monthly"
+    type: string
+    order_by_field: "month"
+    sql: LEFT(${month_name}, 3)||"-"||RIGHT(FORMAT("%d", ${year}), 2) ;;
   }
 
   dimension: quarter_index {
